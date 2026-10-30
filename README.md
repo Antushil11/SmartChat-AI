@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Antushil11/smartchat-ai"><img src="https://img.shields.io/badge/GitHub-Antushil11%2Fsmartchat--ai-7C3AED?logo=github&style=for-the-badge" alt="GitHub Repo" /></a>
+  <a href="https://github.com/Antushil11/SmartChat-AI"><img src="https://img.shields.io/badge/GitHub-Antushil11%2FSmartChat--AI-7C3AED?logo=github&style=for-the-badge" alt="GitHub Repo" /></a>
   <a href="https://github.com/Antushil11"><img src="https://img.shields.io/badge/Author-Antu%20Shil-0284C7?style=for-the-badge&logo=github" alt="Author" /></a>
   <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js" alt="Node.js" />
   <img src="https://img.shields.io/badge/Gemini_API-2.0_Flash-4285F4?style=for-the-badge&logo=google" alt="Google Gemini" />
@@ -20,7 +20,7 @@
 
 ## 🌐 Live Demo & Repository Links
 
-- **GitHub Repository:** [https://github.com/Antushil11/smartchat-ai](https://github.com/Antushil11/smartchat-ai)
+- **GitHub Repository:** [https://github.com/Antushil11/SmartChat-AI](https://github.com/Antushil11/SmartChat-AI)
 - **Author Profile:** [@Antushil11 (ANTU SHIL)](https://github.com/Antushil11)
 - **Local Live Server:** [http://localhost:3000](http://localhost:3000)
 
@@ -113,8 +113,8 @@ SmartChat AI/
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/Antushil11/smartchat-ai.git
-cd smartchat-ai
+git clone https://github.com/Antushil11/SmartChat-AI.git
+cd SmartChat-AI
 ```
 
 ### 3. Install Dependencies
@@ -177,7 +177,7 @@ Expected output:
 ### Deploy to Render
 1. Push your repository to GitHub.
 2. Sign in to [Render](https://render.com) and create a **New Web Service**.
-3. Connect your repository `https://github.com/Antushil11/smartchat-ai`.
+3. Connect your repository `https://github.com/Antushil11/SmartChat-AI`.
 4. Configure:
    - **Build Command:** `npm install`
    - **Start Command:** `npm start`
@@ -193,7 +193,7 @@ Expected output:
 Developed with ❤️ by **[Antu Shil (Antushil11)](https://github.com/Antushil11)**
 
 - **GitHub:** [@Antushil11](https://github.com/Antushil11)
-- **Project:** [SmartChat AI](https://github.com/Antushil11/smartchat-ai)
+- **Project:** [SmartChat AI](https://github.com/Antushil11/SmartChat-AI)
 
 ---
 

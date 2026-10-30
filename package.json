@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Antushil11/smartchat-ai.git"
+    "url": "git+https://github.com/Antushil11/SmartChat-AI.git"
   },
   "keywords": [
     "ai",
@@ -24,9 +24,9 @@
   "author": "Antu Shil (https://github.com/Antushil11)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Antushil11/smartchat-ai/issues"
+    "url": "https://github.com/Antushil11/SmartChat-AI/issues"
   },
-  "homepage": "https://github.com/Antushil11/smartchat-ai#readme",
+  "homepage": "https://github.com/Antushil11/SmartChat-AI#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^18.0.9",
