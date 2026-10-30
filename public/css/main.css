@@ -1653,3 +1653,57 @@ body {
   animation: mic-pulse 1s infinite;
 }
 
+/* ─── MIC PERMISSION MODAL ───────────────────────────────────── */
+.mic-modal-content {
+  width: 90%;
+  max-width: 500px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: modal-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mic-guide-box {
+  display: flex;
+  gap: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.mic-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.mic-guide-steps h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mic-guide-steps ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.mic-guide-steps li {
+  margin-bottom: 6px;
+}
+
+

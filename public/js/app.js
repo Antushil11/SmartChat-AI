@@ -123,7 +123,13 @@ const dom = {
   keyStatusIndicator:   $('key-status-indicator'),
   voiceBadge:           $('voice-badge'),
   voiceDesc:            $('voice-desc'),
-  btnToggleKeyVisibility:$('btn-toggle-key-visibility')
+  btnToggleKeyVisibility:$('btn-toggle-key-visibility'),
+
+  // Microphone permission modal
+  micModal:             $('mic-modal'),
+  btnCloseMicModal:     $('btn-close-mic-modal'),
+  btnRetryMic:          $('btn-retry-mic'),
+  btnUploadAudioFallback:$('btn-upload-audio-fallback')
 };
 
 // ─── CONFIGURE MARKED ─────────────────────────────────────────────
@@ -746,11 +752,11 @@ function initVoiceRecognition() {
     recognition.onerror = (e) => {
       setRecordingUI(false);
       if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-        showToast('Microphone access was denied. Please allow microphone permissions in your browser.', 'error');
+        openMicModal();
+        showToast('Microphone blocked. Follow instructions on screen to allow.', 'error');
       } else if (e.error === 'no-speech') {
         showToast('No speech was detected. Please try again.', 'info');
       } else if (e.error !== 'aborted') {
-        // Gracefully fallback to MediaRecorder if Web Speech service is blocked
         console.warn('Speech recognition error, trying recorder fallback:', e.error);
         startMediaRecording();
       }
@@ -877,11 +883,20 @@ function startMediaRecording() {
     .catch(err => {
       setRecordingUI(false);
       if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-        showToast('Microphone access denied. Please click the lock icon in the address bar and enable microphone.', 'error');
+        openMicModal();
+        showToast('Microphone access blocked. Follow instructions on screen.', 'error');
       } else {
         showToast(`Could not access microphone: ${err.message}`, 'error');
       }
     });
+}
+
+function openMicModal() {
+  if (dom.micModal) dom.micModal.style.display = 'flex';
+}
+
+function closeMicModal() {
+  if (dom.micModal) dom.micModal.style.display = 'none';
 }
 
 // ─── TEXT-TO-SPEECH ───────────────────────────────────────────────
@@ -1232,6 +1247,20 @@ function initEventListeners() {
   });
   dom.settingsModal?.addEventListener('click', e => {
     if (e.target === dom.settingsModal) closeSettings();
+  });
+
+  // Mic permission modal listeners
+  dom.btnCloseMicModal?.addEventListener('click', closeMicModal);
+  dom.micModal?.addEventListener('click', e => {
+    if (e.target === dom.micModal) closeMicModal();
+  });
+  dom.btnRetryMic?.addEventListener('click', () => {
+    closeMicModal();
+    startVoice();
+  });
+  dom.btnUploadAudioFallback?.addEventListener('click', () => {
+    closeMicModal();
+    dom.fileInput?.click();
   });
 
   // Sidebar personas

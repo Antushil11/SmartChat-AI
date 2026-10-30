@@ -325,6 +325,40 @@
     </div>
   </div>
 
+  <!-- Microphone permission guide modal -->
+  <div class="modal-overlay" id="mic-modal" style="display:none">
+    <div class="modal-content mic-modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">🎙️ Allow Microphone Access</h3>
+        <button class="modal-close" id="btn-close-mic-modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mic-guide-box">
+          <div class="mic-icon-circle">🔒</div>
+          <div class="mic-guide-steps">
+            <h4>How to unblock your microphone:</h4>
+            <ol>
+              <li>Click the <strong>lock icon (🔒)</strong> or <strong>site settings icon</strong> on the left side of your browser address bar (next to <code>localhost:3000</code>).</li>
+              <li>Find <strong>Microphone</strong> and change it from <em>Blocked</em> to <strong>Allow</strong>.</li>
+              <li>Click <strong>"Try Microphone Again"</strong> below!</li>
+            </ol>
+          </div>
+        </div>
+        <p class="settings-hint" style="margin-top: 10px;">
+          💡 <strong>Windows Check:</strong> Make sure <em>Windows Settings → Privacy & Security → Microphone → "Let desktop apps access your microphone"</em> is turned <strong>ON</strong>.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btn-upload-audio-fallback">📁 Upload Audio File</button>
+        <button class="btn-primary" id="btn-retry-mic">🔄 Try Microphone Again</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>

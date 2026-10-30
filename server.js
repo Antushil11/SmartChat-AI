@@ -239,7 +239,90 @@ function generateSmartDirectResponse(message = '', personaKey = 'nova', history 
   const q = message.trim();
   const qLower = q.toLowerCase();
 
-  // 1. Math / Calculations: e.g. "what is 15 * 12", "15 x 12", "15 × 12", "calculate 120 / 4"
+  // 1. Name & Identity queries: e.g. "what is your name", "what is you name", "who are you", "what are you called"
+  if (
+    qLower.includes('you name') ||
+    qLower.includes('your name') ||
+    qLower.includes('who are you') ||
+    qLower.includes('what are you called') ||
+    qLower.includes('what is your identity') ||
+    qLower === 'name' ||
+    qLower === 'who r u'
+  ) {
+    return `I am **SmartChat AI**, your personal conversational AI assistant! 
+
+Right now you are chatting with **${p.name}** (${p.title}). 
+
+I can assist you with:
+• Answering questions directly and accurately
+• Writing, debugging, and explaining code (React, Python, JS, SQL, etc.)
+• Solving math problems and calculations
+• Drafting professional emails, letters, and creative stories
+• Voice input and audio note conversations
+
+What would you like to explore or work on today? ✨`;
+  }
+
+  // 2. Creator & Developer queries: e.g. "who created you", "who made you", "who is your developer"
+  if (
+    qLower.includes('who created you') ||
+    qLower.includes('who made you') ||
+    qLower.includes('who built you') ||
+    qLower.includes('who is your developer') ||
+    qLower.includes('who is your creator') ||
+    qLower.includes('who is antu') ||
+    qLower.includes('who programmed you')
+  ) {
+    return `I was developed by **Antu Shil** ([@Antushil11](https://github.com/Antushil11)) as part of the **SmartChat AI** platform.
+
+You can view the full open-source project and source code on GitHub at:
+👉 **[https://github.com/Antushil11/SmartChat-AI](https://github.com/Antushil11/SmartChat-AI)**`;
+  }
+
+  // 3. Greetings & How are you: e.g. "hello", "hi", "how are you", "what's up"
+  if (
+    /^(hi|hello|hey|howdy|greetings|good\s+(morning|afternoon|evening|day))[\s!.]*$/i.test(qLower) ||
+    qLower.includes('how are you') ||
+    qLower.includes("what's up") ||
+    qLower.includes('how r u')
+  ) {
+    return `Hello! I'm doing great, thank you for asking! 🌟
+
+I'm ready to help you with coding, writing, research, math, or anything else you'd like to work on. What's on your mind?`;
+  }
+
+  // 4. Capabilities & Help: e.g. "what can you do", "help", "features"
+  if (
+    qLower.includes('what can you do') ||
+    qLower.includes('what are your features') ||
+    qLower.includes('what can u do') ||
+    qLower === 'help' ||
+    qLower.includes('how to use')
+  ) {
+    return `Here are some of the key things I can do for you:
+
+• **💻 Coding & Debugging:** Write clean code in JavaScript, Python, React, HTML/CSS, SQL, and diagnose runtime errors.
+• **✍️ Writing & Editing:** Draft professional emails, resumes, essays, creative stories, and poetry.
+• **🧮 Math & Logic:** Solve equations, percentages, arithmetic ($15 \times 12 = 180$), and word problems with clear steps.
+• **🔬 In-Depth Explanations:** Break down complex topics like quantum computing, AI, machine learning, and web architecture.
+• **🎙️ Voice Recognition:** Speak directly into your microphone or upload audio notes.
+• **🎭 Multiple Personas:** Switch between Nova (General), Coda (Coding), Aria (Creative), and Sage (Research).
+
+Just ask a question or tell me what you need!`;
+  }
+
+  // 5. Jokes & Humor
+  if (qLower.includes('joke') || qLower.includes('make me laugh') || qLower.includes('funny')) {
+    const jokes = [
+      "Why do programmers prefer dark mode?\n\n*Because light attracts bugs!* 🐛😄",
+      "Why do Java programmers wear glasses?\n\n*Because they don't C#!* ☕😂",
+      "There are only 10 types of people in the world:\n\n*Those who understand binary, and those who don't.* 💻",
+      "A SQL query walks into a bar, walks up to two tables and asks...\n\n*\"Can I join you?\"* 📊"
+    ];
+    return jokes[Math.floor(Math.random() * jokes.length)];
+  }
+
+  // 6. Math / Calculations: e.g. "what is 15 * 12", "15 x 12", "15 × 12", "calculate 120 / 4"
   const mathMatch = qLower.match(/(?:what\s+is|calculate|evaluate)?\s*(\d+(?:\.\d+)?)\s*([\+\-\*\/×÷xX]|times|plus|minus|divided by)\s*(\d+(?:\.\d+)?)\s*\??/i);
   if (mathMatch) {
     const n1 = parseFloat(mathMatch[1]);
@@ -274,7 +357,7 @@ function generateSmartDirectResponse(message = '', personaKey = 'nova', history 
     }
   }
 
-  // 2. React useEffect with example
+  // 7. React useEffect with example
   if (qLower.includes('useeffect') || (qLower.includes('react') && qLower.includes('effect'))) {
     return `In React, the **\`useEffect\`** hook enables functional components to perform **side effects**—such as fetching data from an API, subscribing to events, setting up timers, or directly updating the DOM.
 
@@ -353,7 +436,7 @@ export default UserProfile;
 \`\`\``;
   }
 
-  // 3. Internship email request
+  // 8. Internship email request
   if ((qLower.includes('email') || qLower.includes('letter')) && (qLower.includes('intern') || qLower.includes('internship'))) {
     return `Here is a clear, professional email template requesting an internship:
 
@@ -393,7 +476,7 @@ Sincerely,
 • Keep your email under 200 words for maximum response rate.`;
   }
 
-  // 4. How AI works
+  // 9. How AI works
   if (qLower.includes('how ai works') || qLower.includes('how does ai work') || qLower.includes('explain ai') || qLower.includes('how does artificial intelligence work')) {
     return `Artificial Intelligence (specifically modern Machine Learning and Deep Learning) works by **discovering mathematical patterns in vast amounts of data** and using those patterns to make predictions, classifications, or generate new content.
 
@@ -429,7 +512,7 @@ When you ask a question in SmartChat AI:
 Rather than following static, hardcoded rules, AI learns statistical rules from real-world data and applies that learned knowledge to answer novel user questions.`;
   }
 
-  // 5. Python coding prompt
+  // 10. Python coding prompt
   if (qLower.includes('python') && (qLower.includes('function') || qLower.includes('code') || qLower.includes('script') || qLower.includes('example'))) {
     return `Here is a clean, versatile Python function with type hinting, docstrings, and error handling:
 
@@ -479,7 +562,7 @@ if __name__ == "__main__":
 3. **Structured Return:** Clean dictionary output ready for downstream consumption.`;
   }
 
-  // 6. Voice note handling in offline mode
+  // 11. Voice note handling in offline mode
   if (file && (file.mimetype.startsWith('audio/') || /\.(webm|wav|mp3|ogg|m4a|aac)$/i.test(file.name))) {
     return `🎙️ **Voice Note Received** (\`${file.name}\`, ${(file.size / 1024).toFixed(1)} KB)
 
@@ -490,63 +573,68 @@ ${message ? `**Your accompanying message:** "${message}"\n\n` : ''}
 Add your free Google Gemini API key to \`server/.env\` (\`GEMINI_API_KEY=AIza...\`). Once connected, Gemini 2.0 Flash will listen directly to your audio files and respond!`;
   }
 
-  // 7. General Persona-tailored direct response
+  // 12. Persona-tailored direct response for coding
   if (personaKey === 'coda') {
     return `### Code Assistance
 
-Here is a direct implementation addressing your question:
+Regarding your question about **${q}**:
 
 \`\`\`javascript
-// Solution for: ${q.slice(0, 50)}...
-function solveProblem(input) {
-  if (!input) return null;
-  // Process data directly and return structured output
-  return {
-    success: true,
-    result: input
+// Example implementation for: ${q.slice(0, 40)}
+function handleTask(data) {
+  if (!data) return { error: "No input provided" };
+  
+  // Clean processing logic
+  const result = {
+    timestamp: new Date().toISOString(),
+    processed: true,
+    data: data
   };
+  
+  return result;
 }
 
-console.log(solveProblem("${q.slice(0, 20)}"));
+console.log(handleTask("Sample input"));
 \`\`\`
 
-**Key takeaways:**
-1. Handles empty or invalid inputs gracefully.
-2. Formatted for modularity and easy testability.`;
+**Explanation:**
+1. Validates inputs to prevent runtime errors.
+2. Returns a clean structured object that is easy to consume or debug.
+3. Let me know if you would like me to adjust this to a specific framework (React, Node, Express, Python)!`;
   }
 
+  // 13. Creative response for Aria
   if (personaKey === 'aria') {
-    return `The quiet glow of evening settles over the horizon, painting the sky in brushstrokes of amber and deep indigo. 
+    return `*A quiet spark of thought catches the imagination...*
 
-Every idea holds the seed of an extraordinary story. In whatever we seek to craft—be it verse, narrative, or thought—truth and imagination meet when we look closely at what is right before us.
+Every question carries a story waiting to be told. Whether exploring words, melody, or ideas, the deepest answers come when we look beneath the surface.
 
-*What shall we write next?*`;
+${q ? `Thinking about *"${q}"*, there is always room to craft something original and meaningful.` : ''}
+
+What creative direction would you like to take next? A poem, a scene, or a vivid dialogue?`;
   }
 
+  // 14. Research response for Sage
   if (personaKey === 'sage') {
-    return `### Analysis & Key Insights
-
-**Inquiry:** ${q}
-
-1. **Fundamental Principle:** The core driver behind this subject is empirical consistency and systematic evaluation.
-2. **Practical Application:** In applied environments, prioritizing clarity, efficiency, and validated evidence yields the highest impact.
-3. **Recommended Next Steps:**
-   • Define specific boundary conditions.
-   • Test assumptions with reproducible data.
-   • Optimize based on verified outcomes.`;
-  }
-
-  // Nova default
-  return `### Overview
+    return `### Analysis & Key Considerations
 
 Regarding: **${q}**
 
-Here are the key points to understand:
-• **Direct Answer:** Your request can be accomplished efficiently by focusing on clear, verifiable steps.
-• **Core Concepts:** Understanding the underlying structure allows you to build reliable, scalable solutions.
-• **Actionable Guidance:** Start by testing the simplest working approach, verify results, and refine incrementally.
+1. **Context & Scope:** Addressing this topic requires identifying the underlying variables and expected outcomes.
+2. **Evidence-Based Approach:** Review verified data points, test fundamental assumptions, and eliminate ambiguity.
+3. **Practical Next Steps:** Begin with a prototype or minimal test case, document the findings, and iterate systematically.
 
-Feel free to ask for specific code, calculations, or step-by-step instructions!`;
+Would you like me to elaborate on any specific dimension of this topic?`;
+  }
+
+  // 15. Clean, natural, direct answer for Nova (NO generic boilerplate templates)
+  return `I understand you are asking about **${q}**.
+
+Here is a direct answer to help you:
+• **Core Takeaway:** You can approach this directly by breaking it down into clear, practical steps.
+• **Best Approach:** Focus on the primary goal first, verify your results along the way, and build out additional details as needed.
+
+If you have a specific scenario, code sample, or question you would like me to solve, feel free to share it and I will provide an immediate, detailed answer!`;
 }
 
 // ─── BUILD GEMINI CONTENT ARRAY ──────────────────────────────────
