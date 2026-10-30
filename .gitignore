@@ -1,0 +1,16 @@
+node_modules/
+uploads/
+
+# Environment files — NEVER commit these
+.env
+.env.local
+server/.env
+server/.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

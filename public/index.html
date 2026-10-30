@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartChat AI — Intelligent Conversations</title>
+  <meta name="description" content="SmartChat AI — A premium AI chat platform with multiple intelligent personas, voice input, file uploads, and beautiful dark-mode interface." />
+  <meta name="keywords" content="AI chat, smart assistant, AI personas, voice chat, file analysis, conversational AI" />
+  <meta property="og:title" content="SmartChat AI" />
+  <meta property="og:description" content="Premium AI Chat Platform with multiple intelligent personas." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/assets/logo.jpg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- ─── SIDEBAR ────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="/assets/logo.jpg" alt="SmartChat AI Logo" />
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-name">SmartChat</h1>
+          <span class="brand-tag">AI</span>
+        </div>
+      </div>
+      <button class="btn-icon" id="btn-new-chat" title="New Chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- AI Personas -->
+    <div class="sidebar-section">
+      <h3 class="section-label">AI Personas</h3>
+      <div class="persona-list" id="persona-list">
+        <div class="persona-item active" data-persona="nova" id="persona-nova">
+          <div class="persona-avatar" style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">🌟</div>
+          <div class="persona-info">
+            <span class="persona-name">Nova</span>
+            <span class="persona-role">General Assistant</span>
+          </div>
+          <div class="persona-active-dot"></div>
+        </div>
+        <div class="persona-item" data-persona="coda" id="persona-coda">
+          <div class="persona-avatar" style="background: linear-gradient(135deg, #059669, #0284C7)">💻</div>
+          <div class="persona-info">
+            <span class="persona-name">Coda</span>
+            <span class="persona-role">Code Expert</span>
+          </div>
+        </div>
+        <div class="persona-item" data-persona="aria" id="persona-aria">
+          <div class="persona-avatar" style="background: linear-gradient(135deg, #DB2777, #9333EA)">🎨</div>
+          <div class="persona-info">
+            <span class="persona-name">Aria</span>
+            <span class="persona-role">Creative Writer</span>
+          </div>
+        </div>
+        <div class="persona-item" data-persona="sage" id="persona-sage">
+          <div class="persona-avatar" style="background: linear-gradient(135deg, #D97706, #DC2626)">🔬</div>
+          <div class="persona-info">
+            <span class="persona-name">Sage</span>
+            <span class="persona-role">Research Analyst</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat History -->
+    <div class="sidebar-section history-section">
+      <div class="section-header">
+        <h3 class="section-label">Recent Chats</h3>
+        <button class="btn-text btn-danger" id="btn-clear-all" title="Clear all history">Clear</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+          <span>No conversations yet</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-footer">
+      <button class="btn-icon-label" id="btn-toggle-theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <span id="theme-label">Light Mode</span>
+      </button>
+      <div class="server-status" id="server-status">
+        <div class="status-dot online"></div>
+        <span>Connected</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN CONTENT ──────────────────────────────────── -->
+  <main class="main-content" id="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="btn-icon sidebar-toggle" id="btn-sidebar-toggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="topbar-persona" id="topbar-persona">
+        <div class="topbar-avatar" id="topbar-avatar" style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">🌟</div>
+        <div class="topbar-info">
+          <span class="topbar-name" id="topbar-name">Nova</span>
+          <span class="topbar-status">
+            <span class="status-dot online"></span>
+            Online
+          </span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-icon" id="btn-settings-toggle" title="AI Model & Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+        <button class="btn-icon" id="btn-voice-toggle" title="Voice Input">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="btn-icon" id="btn-export-chat" title="Export Chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Area -->
+    <section class="chat-area" id="chat-area">
+
+      <!-- Welcome Screen -->
+      <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-content">
+          <div class="welcome-logo">
+            <img src="/assets/logo.jpg" alt="SmartChat AI" />
+            <div class="logo-glow"></div>
+          </div>
+          <h2 class="welcome-title">Welcome to <span class="gradient-text">SmartChat AI</span></h2>
+          <p class="welcome-sub">Your intelligent conversation partner. Choose an AI persona and start chatting!</p>
+          <div class="quick-personas">
+            <button class="quick-persona-btn active" data-persona="nova" id="qp-nova">
+              <span class="qp-emoji">🌟</span>
+              <span class="qp-name">Nova</span>
+              <span class="qp-desc">General</span>
+            </button>
+            <button class="quick-persona-btn" data-persona="coda" id="qp-coda">
+              <span class="qp-emoji">💻</span>
+              <span class="qp-name">Coda</span>
+              <span class="qp-desc">Coding</span>
+            </button>
+            <button class="quick-persona-btn" data-persona="aria" id="qp-aria">
+              <span class="qp-emoji">🎨</span>
+              <span class="qp-name">Aria</span>
+              <span class="qp-desc">Creative</span>
+            </button>
+            <button class="quick-persona-btn" data-persona="sage" id="qp-sage">
+              <span class="qp-emoji">🔬</span>
+              <span class="qp-name">Sage</span>
+              <span class="qp-desc">Research</span>
+            </button>
+          </div>
+          <div class="suggestion-chips">
+            <button class="chip" id="chip-1">💡 Explain quantum computing</button>
+            <button class="chip" id="chip-2">💻 Write a React component</button>
+            <button class="chip" id="chip-3">✍️ Write a short poem</button>
+            <button class="chip" id="chip-4">🔬 Analyze climate change</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Container -->
+      <div class="messages-container" id="messages-container"></div>
+
+    </section>
+
+    <!-- ─── INPUT AREA ─────────────────────────────────── -->
+    <div class="input-area">
+
+      <!-- File Preview -->
+      <div class="file-preview" id="file-preview" style="display:none">
+        <div class="file-preview-inner" id="file-preview-inner"></div>
+        <button class="btn-icon btn-remove-file" id="btn-remove-file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Voice indicator -->
+      <div class="voice-indicator" id="voice-indicator" style="display:none">
+        <div class="voice-bars">
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+        </div>
+        <span id="voice-indicator-text">Listening... Click mic to stop</span>
+      </div>
+
+      <div class="input-box">
+        <button class="input-action-btn" id="btn-attach" title="Attach File">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+          </svg>
+          <input type="file" id="file-input" accept="image/*,.pdf,.txt,.md,.js,.ts,.py,.json,.csv,.html,.css" style="display:none" />
+        </button>
+        <textarea
+          class="message-input"
+          id="message-input"
+          placeholder="Ask anything… (Shift+Enter for new line)"
+          rows="1"
+          maxlength="4000"
+        ></textarea>
+        <button class="input-action-btn mic-btn" id="btn-mic" title="Voice Input">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="send-btn" id="btn-send" title="Send Message" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-footer">
+        <span class="char-count" id="char-count">0 / 4000</span>
+        <span class="input-hint">SmartChat AI can make mistakes. Verify important information.</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ─── MODALS ─────────────────────────────────────────── -->
+
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Image preview modal -->
+  <div class="modal-overlay" id="image-modal" style="display:none">
+    <div class="modal-content image-modal-content">
+      <button class="modal-close" id="btn-close-image-modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <img id="modal-image" src="" alt="Preview" />
+    </div>
+  </div>
+
+  <!-- Settings modal -->
+  <div class="modal-overlay" id="settings-modal" style="display:none">
+    <div class="modal-content settings-modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ AI Model & Engine Settings</h3>
+        <button class="modal-close" id="btn-close-settings-modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-group">
+          <label class="settings-label" for="input-api-key">Gemini API Key</label>
+          <p class="settings-hint">Stored securely on your server in <code>server/.env</code>.</p>
+          <div class="settings-input-row">
+            <input type="password" id="input-api-key" class="settings-input" placeholder="Paste your GEMINI_API_KEY here" autocomplete="off" />
+            <button type="button" class="btn-input-action" id="btn-toggle-key-visibility" title="Show/Hide Key">👁️</button>
+          </div>
+          <div class="key-status-indicator" id="key-status-indicator"></div>
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" class="settings-link">Get a free key from Google AI Studio &rarr;</a>
+        </div>
+        <div class="settings-group">
+          <label class="settings-label" for="select-model">AI Model</label>
+          <select id="select-model" class="settings-select">
+            <option value="gemini-2.0-flash">gemini-2.0-flash (Recommended: Ultra-fast & Multimodal)</option>
+            <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & versatile)</option>
+            <option value="gemini-flash-latest">gemini-flash-latest</option>
+            <option value="gemini-1.5-pro">gemini-1.5-pro (Complex reasoning)</option>
+          </select>
+        </div>
+        <div class="settings-group">
+          <label class="settings-label">Voice Input Status</label>
+          <div class="voice-status-box" id="voice-status-box">
+            <span class="voice-badge" id="voice-badge">Detecting...</span>
+            <p id="voice-desc" class="settings-hint">Web Speech API provides live dictation typing. HTML5 MediaRecorder provides high-fidelity audio notes in all other browsers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btn-cancel-settings">Cancel</button>
+        <button class="btn-primary" id="btn-save-settings">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
