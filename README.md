@@ -22,7 +22,7 @@
 
 - **GitHub Repository:** [https://github.com/Antushil11/SmartChat-AI](https://github.com/Antushil11/SmartChat-AI)
 - **Author Profile:** [@Antushil11 (ANTU SHIL)](https://github.com/Antushil11)
-- **Local Live Server:** [http://localhost:3000](http://localhost:3000)
+- **Local Live Server:** https://smart-chat-ai-ten.vercel.app/
 
 ---
 
